@@ -13,6 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Media.Animation;
+using System.Windows.Threading;
+using System.Runtime.Remoting.Channels;
+using System.Threading;
+
+
 
 namespace WpfApp2
 {
@@ -21,15 +26,22 @@ namespace WpfApp2
     /// </summary>
     public partial class MainWindow : Window
     {
+        char rotor_1_poz ;
+        char rotor_2_poz ;
+        char rotor_3_poz ;
         public MainWindow()
         {
             InitializeComponent();
-            char rotor_1_poz = rotor_1[0];
-            char rotor_2_poz = rotor_2[0];
-            char rotor_3_poz = rotor_3[0];
+            rotor_1_poz = rotor_1[0];
+            rotor_2_poz = rotor_2[0];
+            rotor_3_poz = rotor_3[0];
             Richtextbox_1.AppendText(char.ToString(rotor_1_poz));
             Richtextbox_2.AppendText(char.ToString(rotor_2_poz));
             Richtextbox_3.AppendText(char.ToString(rotor_3_poz));
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Interval = new TimeSpan(0, 0, 1);
+            //timer.Start();
 
         }
         string standart_alf = "abcdefghijklmnopqrstuvwxyz";//  
@@ -77,6 +89,24 @@ namespace WpfApp2
 
             return step;
         }
+        async private void draw(char output)
+        {
+            Button but = new Button();
+
+            but = (Button)FindName(char.ToString(output));
+            
+            ((Ellipse)but.Template.FindName("buttonSurface", but)).Fill = new SolidColorBrush(Colors.Red);
+
+            await Task.Run(() => draw_2(output));
+        }
+        private void draw_2(char output)
+        {
+            Button but = new Button();
+
+            but = (Button)FindName(char.ToString(output));
+            Thread.Sleep(1000);
+            ((Ellipse)but.Template.FindName("buttonSurface", but)).Fill = new SolidColorBrush(Colors.Black);
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {   
@@ -85,10 +115,16 @@ namespace WpfApp2
             if (letter_of_btn == null)
                 return;
             char input = Char.Parse(letter_of_btn);
-            //enigma_algorith(roter_3, rotor_2, rotor_1, 'c', 'v', 'r',input);
+            char output = enigma_algorith(rotor_3, rotor_2, rotor_1, 'c', 'v', 'r',input);
+            draw(output);
+
         }
         //private void change_rotor_poz()
-
+        private void output_char_light_letter(char output )
+        {
+           var btn = FindName(char.ToString(output));
+           // (btn as Button).controlayout = 
+        } 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
         }
@@ -99,22 +135,39 @@ namespace WpfApp2
             RadioButton this_button = sender as RadioButton;
             switch (this_button.Content)
             {
-                case '1':
+                case "1":
+                    Richtextbox_1.Document.Blocks.Clear();
                     rotor_1 = alf_rotor_1;
+                    rotor_1_poz = rotor_1[0];
+                    Richtextbox_1.AppendText(char.ToString(rotor_1_poz));
                     break;
-                case '2':
+                case "2":
+                    Richtextbox_1.Document.Blocks.Clear();
                     rotor_1 = alf_rotor_2;
-                    break;
-                case '3':
+                    rotor_1_poz = rotor_1[0];
+                    Richtextbox_1.AppendText(char.ToString(rotor_1_poz)); break;
+                case "3":
+                    Richtextbox_1.Document.Blocks.Clear();
                     rotor_1 = alf_rotor_3;
-                    break;
-                case '4':
+                    rotor_1_poz = rotor_1[0];
+                    Richtextbox_1.AppendText(char.ToString(rotor_1_poz)); break;
+                case "4":
+                    Richtextbox_1.Document.Blocks.Clear();
                     rotor_1 = alf_rotor_4;
-                    break;
-                case '5':
+                    rotor_1_poz = rotor_1[0];
+                    Richtextbox_1.AppendText(char.ToString(rotor_1_poz)); break;
+                case "5":
+                    Richtextbox_1.Document.Blocks.Clear();
                     rotor_1 = alf_rotor_5;
-                    break;
+                    rotor_1_poz = rotor_1[0];
+                    Richtextbox_1.AppendText(char.ToString(rotor_1_poz)); break;
             }
+
+        }
+        private void ch()
+        {
+            Richtextbox_1.Document.Blocks.Clear();
+            Richtextbox_1.AppendText(char.ToString(rotor_1_poz));
 
         }
         private void RadioButton_Checked_2(object sender, RoutedEventArgs e)
@@ -122,21 +175,31 @@ namespace WpfApp2
             RadioButton this_button = sender as RadioButton;
             switch (this_button.Content)
             {
-                case '1':
+                case "1":
+                    Richtextbox_2.Document.Blocks.Clear();
                     rotor_2 = alf_rotor_1;
-                    break;
-                case '2':
+                    rotor_2_poz = rotor_2[0];
+                    Richtextbox_2.AppendText(char.ToString(rotor_2_poz)); break;
+                case "2":
+                    Richtextbox_2.Document.Blocks.Clear();
                     rotor_2 = alf_rotor_2;
-                    break;
-                case '3':
+                    rotor_2_poz = rotor_2[0];
+                    Richtextbox_2.AppendText(char.ToString(rotor_2_poz)); break;
+                case "3":
+                    Richtextbox_2.Document.Blocks.Clear();
                     rotor_2 = alf_rotor_3;
-                    break;
-                case '4':
+                    rotor_2_poz = rotor_2[0];
+                    Richtextbox_2.AppendText(char.ToString(rotor_2_poz)); break;
+                case "4":
+                    Richtextbox_2.Document.Blocks.Clear();
                     rotor_2 = alf_rotor_4;
-                    break;
-                case '5':
+                    rotor_2_poz = rotor_2[0];
+                    Richtextbox_2.AppendText(char.ToString(rotor_2_poz)); break;
+                case "5":
+                    Richtextbox_2.Document.Blocks.Clear();
                     rotor_2 = alf_rotor_5;
-                    break;
+                    rotor_2_poz = rotor_2[0];
+                    Richtextbox_2.AppendText(char.ToString(rotor_2_poz)); break;
             }
 
         }
@@ -145,23 +208,45 @@ namespace WpfApp2
             RadioButton this_button = sender as RadioButton;
             switch (this_button.Content)
             {
-                case '1':
+                case "1":
+                    Richtextbox_3.Document.Blocks.Clear();
                     rotor_3 = alf_rotor_1;
-                    break;
-                case '2':
+                    rotor_3_poz = rotor_3[0];
+                    Richtextbox_3.AppendText(char.ToString(rotor_3_poz)); break;
+                case "2":
+                    Richtextbox_3.Document.Blocks.Clear();
                     rotor_3 = alf_rotor_2;
-                    break;
-                case '3':
+                    rotor_3_poz = rotor_3[0];
+                    Richtextbox_3.AppendText(char.ToString(rotor_3_poz)); break;
+                case "3":
+                    Richtextbox_3.Document.Blocks.Clear();
                     rotor_3 = alf_rotor_3;
-                    break;
-                case '4':
+                    rotor_3_poz = rotor_3[0];
+                    Richtextbox_3.AppendText(char.ToString(rotor_3_poz)); break;
+                case "4":
+                    Richtextbox_3.Document.Blocks.Clear();
                     rotor_3 = alf_rotor_4;
-                    break;
-                case '5':
+                    rotor_3_poz = rotor_3[0];
+                    Richtextbox_3.AppendText(char.ToString(rotor_3_poz)); break;
+                case "5":
+                    Richtextbox_3.Document.Blocks.Clear();
                     rotor_3 = alf_rotor_5;
-                    break;
+                    rotor_3_poz = rotor_3[0];
+                    Richtextbox_3.AppendText(char.ToString(rotor_3_poz)); break;
             }
 
+        }
+   
+ 
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            Richtextbox_1.Document.Blocks.Clear();
+            char rotor_1_poz = rotor_1[0];
+            char rotor_2_poz = rotor_2[0];
+            char rotor_3_poz = rotor_3[0];
+            Richtextbox_1.AppendText(char.ToString(rotor_1_poz));
+            Richtextbox_2.AppendText(char.ToString(rotor_2_poz));
+            Richtextbox_3.AppendText(char.ToString(rotor_3_poz));
         }
 
         private void Button_Click_up_1(object sender, RoutedEventArgs e)

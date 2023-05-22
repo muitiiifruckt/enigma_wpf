@@ -3,12 +3,65 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp2"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+
+
+        xmlns:local="clr-namespace:WpfApp2" 
         mc:Ignorable="d"
         Title="MainWindow" Height="534" Width="972" Cursor="AppStarting">
-
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Style.Setters>
+                <Setter Property="Button.Background" Value="Black" />
+                <Setter Property="Button.Foreground" Value="White" />
+                <Setter Property="Button.FontFamily" Value="Verdana" />
+                <Setter Property="Button.Margin" Value="10" />
+            </Style.Setters>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="FontSize" Value="14" />
+                    <Setter Property="Foreground" Value="Red" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <ControlTemplate x:Key="Button_radius" TargetType="{x:Type ButtonBase}">
+            <Border x:Name="border" CornerRadius="200" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="Button.IsDefaulted" Value="true">
+                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                    <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+   
+       
+    
     <Grid Margin="0,-14,0,14">
-        <Button Height="60" Width="60" Margin="100,37,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+        <Button Template="{DynamicResource Button_radius}"   x:Name="button1" Content="Кнопка 1" Width =" 200" Height="200" />
+
+        <Button Height="60" Width="60" Name ="w" Margin="100,37,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -24,7 +77,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="20,37,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+        <Button Height="60" Width="60" Name ="q"  Margin="20,37,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -40,7 +93,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="189,37,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+        <Button Height="60" Width="60" Name ="e" Margin="189,37,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -56,7 +109,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="283,37,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+        <Button Height="60" Width="60"  Name ="r" Margin="283,37,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -72,7 +125,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="379,37,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+        <Button Height="60" Width="60" Name ="t" Margin="379,37,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -88,7 +141,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="476,37,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+        <Button Height="60" Width="60" Name ="z" Margin="476,37,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -104,7 +157,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="752,37,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+        <Button Height="60" Width="60" Name ="o" Margin="752,37,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -120,11 +173,15 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="655,37,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+
+        <Button Height="60" Width="60" Name ="i" Margin="655,37,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
+                       
+
                         <Ellipse x:Name="buttonSurface" Fill="LightGreen"
+                                 
                             StrokeThickness="2" 
                             Stroke="Gray" StrokeDashCap="Flat" />
                         <Label x:Name="buttonCaption" VerticalAlignment="Center"
@@ -136,7 +193,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="562,37,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+        <Button Height="60" Width="60" Name ="u" Margin="562,37,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -152,7 +209,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="138,102,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+        <Button Height="60" Width="60" Name ="s" Margin="138,102,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -168,7 +225,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="58,102,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+        <Button Height="60" Width="60" Name ="a" Margin="58,102,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -184,7 +241,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="227,102,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+        <Button Height="60" Width="60" Name ="d" Margin="227,102,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -200,7 +257,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="321,102,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+        <Button Height="60" Width="60" Name ="f" Margin="321,102,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -216,7 +273,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="417,102,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+        <Button Height="60" Width="60" Name ="g" Margin="417,102,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -232,7 +289,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="514,102,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+        <Button Height="60" Width="60" Name ="h" Margin="514,102,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -248,7 +305,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="693,102,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+        <Button Height="60" Width="60" Name ="k" Margin="693,102,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -264,7 +321,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="600,102,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+        <Button Height="60" Width="60" Name ="j" Margin="600,102,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -280,7 +337,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="100,167,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+        <Button Height="60" Width="60" Name ="y" Margin="100,167,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -296,7 +353,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="20,167,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+        <Button Height="60" Width="60" Name ="p" Margin="20,167,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -312,7 +369,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="189,167,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+        <Button Height="60" Width="60" Name ="x" Margin="189,167,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -328,7 +385,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="283,167,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+        <Button Height="60" Width="60" Name ="c" Margin="283,167,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -344,7 +401,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="379,167,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+        <Button Height="60" Width="60" Name ="v" Margin="379,167,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -360,7 +417,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="476,167,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+        <Button Height="60" Width="60" Name ="b" Margin="476,167,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -376,7 +433,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="752,167,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" >
+        <Button Height="60" Width="60" Name ="l" Margin="752,167,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -392,7 +449,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="655,167,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+        <Button Height="60" Width="60"  Name ="m" Margin="655,167,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -408,7 +465,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="562,167,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
+        <Button Height="60" Width="60" Name ="n" Margin="562,167,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -574,7 +631,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="60" Width="60" Margin="760,306,0,0" VerticalAlignment="Top" Content="O" HorizontalAlignment="Left" Click="Button_Click" Background="{x:Null}" >
+        <Button Height="60" Width="60"  Margin="760,306,0,0" VerticalAlignment="Top" Content="O" HorizontalAlignment="Left" Click="Button_Click" Background="{x:Null}" >
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
@@ -1059,19 +1116,19 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <RadioButton Content="1" GroupName="Rotor_1" HorizontalAlignment="Left" Margin="837,102,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_1" IsChecked="True"/>
+        <RadioButton Content="1" GroupName="Rotor_1" HorizontalAlignment="Left" Margin="837,102,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_1" IsChecked="False"/>
         <RadioButton Content="2" GroupName="Rotor_1" HorizontalAlignment="Left" Margin="837,125,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_1"/>
         <RadioButton Content="3" GroupName="Rotor_1" HorizontalAlignment="Left" Margin="837,150,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_1"/>
         <RadioButton Content="4" GroupName="Rotor_1" HorizontalAlignment="Left" Margin="837,174,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_1"/>
         <RadioButton Content="5" GroupName="Rotor_1" HorizontalAlignment="Left" Margin="837,197,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_1"/>
         <RadioButton Content="1" GroupName="Rotor_2" HorizontalAlignment="Left" Margin="874,102,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_2"/>
-        <RadioButton Content="2" GroupName="Rotor_2" HorizontalAlignment="Left" Margin="874,125,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_2" IsChecked="True"/>
+        <RadioButton Content="2" GroupName="Rotor_2" HorizontalAlignment="Left" Margin="874,125,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_2" IsChecked="False"/>
         <RadioButton Content="3" GroupName="Rotor_2" HorizontalAlignment="Left" Margin="874,150,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_2" RenderTransformOrigin="0.461,1.553"/>
         <RadioButton Content="4" GroupName="Rotor_2" HorizontalAlignment="Left" Margin="874,174,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_2"/>
         <RadioButton Content="5" GroupName="Rotor_2" HorizontalAlignment="Left" Margin="874,197,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_2"/>
-        <RadioButton Content="1" GroupName="Rotor_3" HorizontalAlignment="Left" Margin="911,102,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
+        <RadioButton Content="1" GroupName="Rotor_3" HorizontalAlignment="Left" Margin="911,102,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_3"/>
         <RadioButton Content="2" GroupName="Rotor_3" HorizontalAlignment="Left" Margin="911,125,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_3"/>
-        <RadioButton Content="3" GroupName="Rotor_3" HorizontalAlignment="Left" Margin="911,150,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_3" IsChecked="True"/>
+        <RadioButton Content="3" GroupName="Rotor_3" HorizontalAlignment="Left" Margin="911,150,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_3" IsChecked="False"/>
         <RadioButton Content="4" GroupName="Rotor_3" HorizontalAlignment="Left" Margin="911,174,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_3"/>
         <RadioButton Content="5" GroupName="Rotor_3" HorizontalAlignment="Left" Margin="911,197,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_3"/>
         <Rectangle HorizontalAlignment="Left" Height="40" Margin="837,43,0,0" Stroke="Black" VerticalAlignment="Top" Width="25"/>
@@ -1199,7 +1256,7 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <RichTextBox x:Name ="Richtextbox_1" Margin="838,44,100,436" RenderTransformOrigin="0.923,0.605">
+        <RichTextBox x:Name ="Richtextbox_1"  Margin="838,44,100,436" RenderTransformOrigin="0.923,0.605">
             <FlowDocument>
                 <Paragraph>
                     <Run Text=""/>
@@ -1213,6 +1270,8 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
+
+
     </Grid>
 
 
