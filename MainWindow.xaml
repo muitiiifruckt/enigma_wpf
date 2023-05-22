@@ -55,9 +55,9 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
     </Window.Resources>
-   
-       
-    
+
+
+
     <Grid Margin="0,-14,0,14">
         <Button Template="{DynamicResource Button_radius}"   x:Name="button1" Content="Кнопка 1" Width =" 200" Height="200" />
 
@@ -178,7 +178,7 @@
             <Button.Template>
                 <ControlTemplate>
                     <Grid x:Name="controlLayout">
-                       
+
 
                         <Ellipse x:Name="buttonSurface" Fill="LightGreen"
                                  
@@ -1131,9 +1131,9 @@
         <RadioButton Content="3" GroupName="Rotor_3" HorizontalAlignment="Left" Margin="911,150,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_3" IsChecked="False"/>
         <RadioButton Content="4" GroupName="Rotor_3" HorizontalAlignment="Left" Margin="911,174,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_3"/>
         <RadioButton Content="5" GroupName="Rotor_3" HorizontalAlignment="Left" Margin="911,197,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_3"/>
-        <Rectangle HorizontalAlignment="Left" Height="40" Margin="837,43,0,0" Stroke="Black" VerticalAlignment="Top" Width="25"/>
-        <Rectangle HorizontalAlignment="Left" Height="40" Margin="874,43,0,0" Stroke="Black" VerticalAlignment="Top" Width="25"/>
-        <Rectangle HorizontalAlignment="Left" Height="40" Margin="911,43,0,0" Stroke="Black" VerticalAlignment="Top" Width="25"/>
+        <Rectangle HorizontalAlignment="Left" Height="24" Margin="837,43,0,0" Stroke="Black" VerticalAlignment="Top" Width="25"/>
+        <Rectangle HorizontalAlignment="Left" Height="24" Margin="874,43,0,0" Stroke="Black" VerticalAlignment="Top" Width="25"/>
+        <Rectangle HorizontalAlignment="Left" Height="24" Margin="911,43,0,0" Stroke="Black" VerticalAlignment="Top" Width="25"/>
         <Button Height="18" Width="30" Margin="834,25,0,0" VerticalAlignment="Top"  HorizontalAlignment="Left" Click="Button_Click_up_1" Background="{x:Null}" >
             <Button.Template>
                 <ControlTemplate>
@@ -1150,7 +1150,7 @@
             </Button.Template>
         </Button>
 
-        <Button Height="18" Width="30" Margin="834,83,0,0" VerticalAlignment="Top"  HorizontalAlignment="Left" Click="Button_Click_down_1" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" >
+        <Button Height="18" Width="30" Margin="834,67,0,0" VerticalAlignment="Top"  HorizontalAlignment="Left" Click="Button_Click_down_1" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" >
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -1203,7 +1203,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="18" Width="30" Margin="871,83,0,0" VerticalAlignment="Top"  HorizontalAlignment="Left" Click="Button_Click_down_2" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" >
+        <Button Height="18" Width="30" Margin="871,67,0,0" VerticalAlignment="Top"  HorizontalAlignment="Left" Click="Button_Click_down_2" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" >
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -1226,7 +1226,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Button Height="18" Width="30" Margin="908,83,0,0" VerticalAlignment="Top"  HorizontalAlignment="Left" Click="Button_Click_down_3" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" >
+        <Button Height="18" Width="30" Margin="908,67,0,0" VerticalAlignment="Top"  HorizontalAlignment="Left" Click="Button_Click_down_3" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" >
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -1249,21 +1249,21 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <RichTextBox x:Name ="Richtextbox_2" Margin="875,44,65,436" RenderTransformOrigin="0.923,0.605">
+        <RichTextBox x:Name ="Richtextbox_2" BorderThickness="0" Margin="875,44,65,436" RenderTransformOrigin="0.923,0.605">
             <FlowDocument>
                 <Paragraph>
                     <Run Text=""/>
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <RichTextBox x:Name ="Richtextbox_1"  Margin="838,44,100,436" RenderTransformOrigin="0.923,0.605">
+        <RichTextBox x:Name ="Richtextbox_1" BorderThickness="0"  Margin="838,44,100,436" RenderTransformOrigin="0.923,0.605">
             <FlowDocument>
                 <Paragraph>
                     <Run Text=""/>
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <RichTextBox x:Name ="Richtextbox_3" Margin="912,44,27,436" RenderTransformOrigin="0.923,0.605">
+        <RichTextBox x:Name ="Richtextbox_3" BorderThickness="0" Margin="912,44,27,436" RenderTransformOrigin="0.923,0.605">
             <FlowDocument>
                 <Paragraph>
                     <Run Text=""/>
