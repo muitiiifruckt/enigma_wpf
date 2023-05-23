@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+
+namespace WpfApp2
+{
+    /// <summary>
+    /// Логика взаимодействия для Window1.xaml
+    /// </summary>
+    public partial class Window1 : Window
+    {
+        public Window1()
+        {
+            InitializeComponent();
+        }
+        string standart_alf = "abcdefghijklmnopqrstuvwxyz";//  
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+            if (standart_alf.Contains(e.Key.ToString().ToLower()))
+            {
+                Class1.input = char.Parse(e.Key.ToString().ToLower());
+
+
+            }
+            rich1.AppendText(char.ToString(Class1.input));
+            rich2.AppendText(char.ToString(Class1.output));
+
+
+        }
+    }
+}

@@ -4,15 +4,29 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        
 
 
         xmlns:local="clr-namespace:WpfApp2" 
         mc:Ignorable="d"
-        Title="MainWindow" Height="534" Width="972" Cursor="AppStarting">
+        Title="MainWindow" Height="534" Width="1160" Cursor="AppStarting"
+        KeyDown="Window_KeyDown">
     <Window.Resources>
+        <ControlTemplate x:Key="MySwitchTemplate" TargetType="{x:Type Button}">
+            <Grid>
+                <Rectangle x:Name="OnState" Fill="Green" Visibility="Visible"/>
+                <Rectangle x:Name="OffState" Fill="Red"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <DataTrigger Binding="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
+                    <Setter TargetName="OnState" Property="Visibility" Value="Visible"/>
+                    <Setter TargetName="OffState" Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
         <Style TargetType="Button">
             <Style.Setters>
-                <Setter Property="Button.Background" Value="Black" />
+                <Setter Property="Button.Background" Value="LightSeaGreen" />
                 <Setter Property="Button.Foreground" Value="White" />
                 <Setter Property="Button.FontFamily" Value="Verdana" />
                 <Setter Property="Button.Margin" Value="10" />
@@ -32,7 +46,7 @@
         <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
         <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
         <ControlTemplate x:Key="Button_radius" TargetType="{x:Type ButtonBase}">
-            <Border x:Name="border" CornerRadius="200" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+            <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
                 <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
             </Border>
             <ControlTemplate.Triggers>
@@ -59,7 +73,6 @@
 
 
     <Grid Margin="0,-14,0,14">
-        <Button Template="{DynamicResource Button_radius}"   x:Name="button1" Content="Кнопка 1" Width =" 200" Height="200" />
 
         <Button Height="60" Width="60" Name ="w" Margin="100,37,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="Button_Click" >
             <Button.Template>
@@ -1249,27 +1262,49 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <RichTextBox x:Name ="Richtextbox_2" BorderThickness="0" Margin="875,44,65,436" RenderTransformOrigin="0.923,0.605">
+        <RichTextBox x:Name ="Richtextbox_2" BorderThickness="0" Margin="875,44,260,436" RenderTransformOrigin="0.923,0.605">
             <FlowDocument>
                 <Paragraph>
                     <Run Text=""/>
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <RichTextBox x:Name ="Richtextbox_1" BorderThickness="0"  Margin="838,44,100,436" RenderTransformOrigin="0.923,0.605">
+        <RichTextBox x:Name ="Richtextbox_1" BorderThickness="0"  Margin="838,44,296,436" RenderTransformOrigin="0.923,0.605">
             <FlowDocument>
                 <Paragraph>
                     <Run Text=""/>
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <RichTextBox x:Name ="Richtextbox_3" BorderThickness="0" Margin="912,44,27,436" RenderTransformOrigin="0.923,0.605">
+        <RichTextBox x:Name ="Richtextbox_3" BorderThickness="0" Margin="912,44,222,436" RenderTransformOrigin="0.923,0.605">
             <FlowDocument>
                 <Paragraph>
                     <Run Text=""/>
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
+        <RichTextBox Name="r1" Margin="949,44,0,285">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text=""/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <RichTextBox Name="r2" Margin="949,259,0,70">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text=""/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <Label Content="Output" HorizontalAlignment="Left" Margin="962,238,0,0" VerticalAlignment="Top"/>
+        <Label Content="Input" HorizontalAlignment="Left" Margin="949,25,0,0" VerticalAlignment="Top"/>
+        <Button Content="Clear"  Template="{DynamicResource Button_radius}"  HorizontalAlignment="Left"  Height="20" Width="50"  Margin="1040,236,0,0" VerticalAlignment="Top" Click="clear"/>
+
+
+
+
+
 
 
     </Grid>

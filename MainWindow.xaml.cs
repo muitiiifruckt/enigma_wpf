@@ -46,6 +46,7 @@ namespace WpfApp2
         string rotor_1 = "ekmflgdqvzntowyhxuspaibrcj";// настройки по умолчанию , выбраны роторы 1 2 3 соотвественно
         string rotor_2 = "ajdksiruxblhwtmcqgznpyfvoe";//
         string rotor_3 = "bdfhjlcprtxvznyeiwgakmusqo";//
+
         // алфавиты
         char step; // вспомогательная переменная
 
@@ -60,7 +61,8 @@ namespace WpfApp2
             Richtextbox_2.AppendText(char.ToString(rotor_2_poz));
             Richtextbox_3.AppendText(char.ToString(rotor_3_poz));
         }
-
+        
+    
         private char enigma_algorith(string first_rotor_alf, string second_rotor_alf, string third_rotor_alf, char first_rotor_poz, char second_rotor_poz, char third_rotor_poz, char letter_input) // основной алгоритм шифрования
         {
             int n = standart_alf.Length;
@@ -118,6 +120,8 @@ namespace WpfApp2
             char output = enigma_algorith(rotor_3, rotor_2, rotor_1, rotor_3_poz, rotor_2_poz, rotor_1_poz, input);
             rotors_poz_change();
             draw(output);
+            r1.AppendText(char.ToString(input));
+            r2.AppendText(char.ToString(output));
 
         } 
         private void rotors_poz_change() // прокрутка роторов при шифровании
@@ -262,15 +266,40 @@ namespace WpfApp2
 
         } // выбор третьего ротора
 
+        private void clear(object sender, RoutedEventArgs e)
+        {
+            r1.Document.Blocks.Clear();
+            r2.Document.Blocks.Clear();
+
+
+        }
+        private void commutator(object sender, RoutedEventArgs e)// коммутатор
+        {
+            
+        }
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (standart_alf.Contains(e.Key.ToString().ToLower()))
+            {
+                char input = char.Parse(e.Key.ToString().ToLower());
+                char output = enigma_algorith(rotor_3, rotor_2, rotor_1, rotor_3_poz, rotor_2_poz, rotor_1_poz, input);
+                rotors_poz_change();
+                draw(output);
+                r1.AppendText(char.ToString(input));
+                r2.AppendText(char.ToString(output));
+
+            }
+
+        }
         private void Button_Click_up_1(object sender, RoutedEventArgs e) // прокрутка ротора вручную
         {
-            if (rotor_1_poz == rotor_1[rotor_1.Length - 1])
-                rotor_1_poz = rotor_1[0];
-            else
-                rotor_1_poz = rotor_1[rotor_1.IndexOf(rotor_1_poz) + 1];// просто вперед
+        if (rotor_1_poz == rotor_1[rotor_1.Length - 1])
+            rotor_1_poz = rotor_1[0];
+        else
+            rotor_1_poz = rotor_1[rotor_1.IndexOf(rotor_1_poz) + 1];// просто вперед
 
-            Richtextbox_1.Document.Blocks.Clear();
-            Richtextbox_1.AppendText(char.ToString(rotor_1_poz));
+        Richtextbox_1.Document.Blocks.Clear();
+        Richtextbox_1.AppendText(char.ToString(rotor_1_poz));
         }
 
         private void Button_Click_up_2(object sender, RoutedEventArgs e)// прокрутка ротора вручную
